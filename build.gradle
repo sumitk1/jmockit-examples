@@ -7,7 +7,22 @@ repositories {
     mavenCentral()
 }
 
+configurations.all {
+    resolutionStrategy {
+        eachDependency { DependencyResolveDetails details ->
+            if (details.requested.group == 'org.springframework') details.useVersion '3.2.1.RELEASE'
+            if (details.requested.group == 'com.sun.jersey' || details.requested.name == 'jersey-spring') details.useVersion '1.17.1'
+            if (details.requested.group.startsWith('com.fasterxml.jackson')) details.useVersion '2.2.1'
+            if (details.requested.group == 'org.codehaus.jackson') details.useVersion '1.9.12'
+        }
+    }
+}
+
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
     testCompile 'com.googlecode.jmockit:jmockit:0.999.13'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
 }
