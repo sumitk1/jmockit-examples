@@ -1,6 +1,10 @@
 package com.jmockit.example;
 
+import mockit.Mock;
+import mockit.MockUp;
 import org.junit.Test;
+
+import static org.junit.Assert.assertNull;
 
 /**
  * Author sumitk
